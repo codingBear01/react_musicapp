@@ -1,12 +1,46 @@
-import React from 'react';
+import { React, useState } from 'react';
+import VisibilitySensor from 'react-visibility-sensor';
+import { motion } from 'framer-motion';
 import MusicPlayer from './MusicPlayer';
 
 function Search() {
+  const [elIsVisible, setElIsVisible] = useState(false);
+
+  const bg = {
+    true: {
+      left: '-44rem',
+    },
+    false: {
+      left: '-50rem',
+    },
+  };
+  const redimg = {
+    true: {
+      left: '18rem',
+    },
+    false: {
+      left: '16rem',
+    },
+  };
+  const musicimg = {
+    true: {
+      left: '2rem',
+    },
+    false: {
+      left: '6rem',
+    },
+  };
   return (
     <div className="search relative h-[65rem] px-[5rem] bg-[#081730] pt-[18rem] pb-[10rem] mt-[-15rem] z-[1] flex items-center justify-between rounded-b-[5rem]">
       {/* left side */}
       <div className="left flex-1">
-        <img
+        <motion.img
+          variants={bg}
+          animate={`${elIsVisible}`}
+          transition={{
+            duration: 1,
+            type: 'ease-out',
+          }}
           className="absolute top-[22rem] left-[-50rem]"
           src={require('./../img/backgraphics.png')}
           alt="backgraphics"
@@ -21,19 +55,31 @@ function Search() {
           src={require('./../img/d2.png')}
           alt="d2"
         />
-        <img
+        <motion.img
+          variants={redimg}
+          animate={`${elIsVisible}`}
+          transition={{
+            duration: 1,
+            type: 'ease-out',
+          }}
           className="absolute w-[9rem] top-[33rem] left-[17rem]"
           src={require('./../img/d3.png')}
           alt="d3"
         />
-        <img
+        <motion.img
+          variants={musicimg}
+          animate={`${elIsVisible}`}
+          transition={{
+            duration: 1,
+            type: 'ease-out',
+          }}
           className="absolute w-[17rem] top-[50rem] left-[2rem]"
           src={require('./../img/d4.png')}
           alt="d4"
         />
       </div>
       {/* right side */}
-      <div className="right flex items-start flex-col justify-start flex-1 h-[100%] pt-[9rem]">
+      <div className="right flex items-start flex-col justify-start flex-1 h-[100%] pt-[9rem] z-[1]">
         {/* search */}
         <div className="searchbar flex justify-start w-[100%]">
           <input
@@ -72,7 +118,9 @@ function Search() {
           </span>
         </div>
         {/* music player */}
-        <MusicPlayer />
+        <VisibilitySensor onChange={(isVisible) => setElIsVisible(isVisible)}>
+          <MusicPlayer />
+        </VisibilitySensor>
       </div>
     </div>
   );
