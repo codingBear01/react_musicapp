@@ -3,7 +3,7 @@ import Feature from './Feature';
 
 function Experience() {
   return (
-    <div className="experience flex flex-col items-center justify-start pt-[18rem] px-[5rem] mt-[-10rem] h-[60rem] rounded-b-[5rem] bg-[#020917] relative z-[2]">
+    <div className="experience flex flex-col items-center justify-start px-[5rem] bg-[#020917] h-[60rem] pt-[18rem] mt-[-10rem] relative z-[2] rounded-b-[5rem]">
       {/* title icon */}
       <img
         className="w-[5rem]"
